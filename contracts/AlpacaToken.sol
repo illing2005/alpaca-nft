@@ -18,15 +18,19 @@ contract AlpacaToken is
 
     constructor()
         ERC1155(
-            "ipfs://QmXeRDZUewPN3cep4wGWJkAYYaRexnNciqqu3sCpBMAbir/{id}.json"
+            "ipfs://QmZix4bQSQAJ2dC2QiNsJrSC7PmL1vEE4BozHrxhsvMPMP/{id}.json"
         )
     {
         name = "Alpaca NFT";
         symbol = "ALPA";
         _setRoyalties(msg.sender, ROYALTIES);
-        for (uint256 i = 0; i <= 22; i++) {
+
+        // mint employee NFTs
+        for (uint256 i = 1; i <= 22; i++) {
             _mint(msg.sender, i, 1, "");
         }
+        // mint an Alex NFT
+        _mint(msg.sender, 55, 1, "");
     }
 
     function supportsInterface(bytes4 interfaceId)
@@ -49,6 +53,6 @@ contract AlpacaToken is
 
     function contractURI() public pure returns (string memory) {
         return
-            "ipfs://QmXeRDZUewPN3cep4wGWJkAYYaRexnNciqqu3sCpBMAbir/contract_metadata.json";
+            "ipfs://QmZix4bQSQAJ2dC2QiNsJrSC7PmL1vEE4BozHrxhsvMPMP/contract_metadata.json";
     }
 }
