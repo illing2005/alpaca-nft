@@ -1,15 +1,27 @@
-// const SimpleStorage = artifacts.require("SimpleStorage");
+const AlpacaToken = artifacts.require("AlpacaToken");
 
-contract("SimpleStorage", (accounts) => {
-  // it("...should store the value 89.", async () => {
-  //   const simpleStorageInstance = await SimpleStorage.deployed();
-  //
-  //   // Set value of 89
-  //   await simpleStorageInstance.set(89, { from: accounts[0] });
-  //
-  //   // Get stored value
-  //   const storedData = await simpleStorageInstance.storedData.call();
-  //
-  //   assert.equal(storedData, 89, "The value 89 was not stored.");
-  // });
+contract("AlpacaToken", (accounts) => {
+  const account_one = accounts[0];
+
+  describe("Is Ownable and Resumable", function () {
+    beforeEach(async function () {
+      this.contract = await AlpacaToken.new({ from: account_one });
+
+    });
+    it("should have correct owner", async function () {
+      const owner = await this.contract.owner.call();
+      assert.equal(owner, account_one);
+    });
+
+    it("should be pausable/resumable by owner", async function () {
+      await this.contract.togglePause(true, {from: account_one});
+
+      const paused = await this.contract.paused.call();
+      assert.equal(paused, true, "It should be pausable");
+
+      await this.contract.togglePause(false, {from: account_one});
+      const unpaused = await this.contract.paused.call();
+      assert.equal(unpaused, false, "It should be resumable");
+    });
+  });
 });

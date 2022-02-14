@@ -3,3 +3,5 @@ build
 app/src/contracts
 .DS_Store
 .idea
+.infura
+.secret
