@@ -2,10 +2,13 @@ const AlpacaToken = artifacts.require("AlpacaToken");
 
 contract("AlpacaToken", (accounts) => {
   const account_one = accounts[0];
+  const account_two = accounts[1];
 
   describe("Is Ownable and Resumable", function () {
     beforeEach(async function () {
-      this.contract = await AlpacaToken.new({ from: account_one });
+      this.contract = await AlpacaToken.new(["test-hash"], [1], {
+        from: account_one,
+      });
     });
     it("should have correct owner", async function () {
       const owner = await this.contract.owner.call();
@@ -31,6 +34,24 @@ contract("AlpacaToken", (accounts) => {
         royalties["royaltyAmount"],
         web3.utils.toWei("0.5", "ether")
       );
+    });
+
+    it("can mint a employee token", async function () {
+      const alexId = await this.contract.alexCounter.call();
+
+      await this.contract.mintNFT("test-hash", { from: account_two });
+
+      const employeeBalance = await this.contract.balanceOf.call(
+        account_two,
+        1
+      );
+      const alexBalance = await this.contract.balanceOf.call(
+        account_two,
+        alexId
+      );
+
+      assert.equal(employeeBalance, 1);
+      assert.equal(alexBalance, 1);
     });
   });
 });

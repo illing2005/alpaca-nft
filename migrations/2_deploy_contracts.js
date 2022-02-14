@@ -1,5 +1,5 @@
 const AlpacaToken = artifacts.require("AlpacaToken");
 
 module.exports = function (deployer) {
-  deployer.deploy(AlpacaToken);
+  deployer.deploy(AlpacaToken, ["test"], [1]);
 };
