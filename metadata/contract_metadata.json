@@ -1,0 +1,8 @@
+{
+  "name": "Alpaca NFTs",
+  "description": "This project features all employees and supporters of Alpaca Technology, Inc",
+  "image": "ipfs://QmWGimw5ttCveGQe64is3dTVaCQmYKaL31b6F3G1KqVMaw/Alex.png",
+  "external_link": "https://rentalpaca.com",
+  "seller_fee_basis_points": 500,
+  "fee_recipient": "0xaCFaa4b77109ea32CA65e61bd14929AEA46997c5"
+}
