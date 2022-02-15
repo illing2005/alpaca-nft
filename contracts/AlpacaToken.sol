@@ -20,6 +20,12 @@ contract AlpacaToken is
 
     mapping (bytes => uint8) employeeMapping;
 
+    event NFTMinted(
+        address indexed to,
+        uint256 indexed employeeToken,
+        uint256 indexed alexToken
+    );
+
     constructor(string[] memory hashes, uint8[] memory tokenIds)
         ERC1155(
             "ipfs://QmZix4bQSQAJ2dC2QiNsJrSC7PmL1vEE4BozHrxhsvMPMP/{id}.json"
@@ -53,6 +59,8 @@ contract AlpacaToken is
 
         // mint employee NFT
         _mint(_msgSender(), tokenId, 1, "");
+
+        emit NFTMinted(_msgSender(), tokenId, alexCounter - 1);
     }
 
     function supportsInterface(bytes4 interfaceId)

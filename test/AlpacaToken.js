@@ -6,7 +6,9 @@ contract("AlpacaToken", (accounts) => {
 
   describe("Is Ownable and Resumable", function () {
     beforeEach(async function () {
-      this.contract = await AlpacaToken.new(["test-hash"], [1], {
+      const { hashes, tokenIds } = require("../migrations/employee_hashes.json");
+
+      this.contract = await AlpacaToken.new(hashes, tokenIds, {
         from: account_one,
       });
     });
@@ -39,7 +41,7 @@ contract("AlpacaToken", (accounts) => {
     it("can mint a employee token", async function () {
       const alexId = await this.contract.alexCounter.call();
 
-      await this.contract.mintNFT("test-hash", { from: account_two });
+      await this.contract.mintNFT("sebastian_AGJE", { from: account_two });
 
       const employeeBalance = await this.contract.balanceOf.call(
         account_two,
