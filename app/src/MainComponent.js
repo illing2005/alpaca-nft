@@ -5,8 +5,9 @@ import Footer from "./Footer";
 import Header from "./Header";
 import MintModal from "./MintModal";
 import Image from "react-bootstrap/cjs/Image";
+import Alert from "react-bootstrap/Alert";
 
-const MainComponent = ({ drizzleContext }) => {
+const MainComponent = ({ drizzleContext, metaMaskAvailable }) => {
   const [currentStackId, setCurrentStackId] = useState(-1);
   const [show, setShow] = useState(false);
   const [mintKey, setMintKey] = useState(null);
@@ -65,10 +66,27 @@ const MainComponent = ({ drizzleContext }) => {
               onChange={(e) => setMintKey(e.target.value)}
             />
           </div>
-          <Button className={"btn btn-lg btn-orange"} onClick={mintNFT}>
+          <Button
+            className={"btn btn-lg btn-orange"}
+            onClick={mintNFT}
+            disabled={!metaMaskAvailable}
+          >
             {initialized ? "Mint NFT" : "Loading..."}
           </Button>
         </p>
+        {!metaMaskAvailable && (
+          <Alert variant="danger">
+            You have to install{" "}
+            <a
+              href="https://metamask.io/"
+              target="_blank"
+              rel="noopener norefferer"
+            >
+              MetaMask
+            </a>{" "}
+            to be able mint your NFT
+          </Alert>
+        )}
         <div style={{ height: 150 }}>
           {assets?.assets?.length > 0 && (
             <>
