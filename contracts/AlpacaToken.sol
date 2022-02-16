@@ -3,14 +3,17 @@ pragma solidity ^0.8.11;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
+import "@opengsn/contracts/src/BaseRelayRecipient.sol";
 import "./Royalties.sol";
 
 contract AlpacaToken is
     Ownable,
     Pausable,
     ERC1155Supply,
-    ERC2981ContractWideRoyalties
+    ERC2981ContractWideRoyalties,
+    BaseRelayRecipient
 {
+    string public override versionRecipient = "2.0.0";
     uint24 private constant ROYALTIES = 500;
 
     string public name;
@@ -18,7 +21,7 @@ contract AlpacaToken is
 
     uint256 public alexCounter = 50;
 
-    mapping (bytes => uint8) employeeMapping;
+    mapping(bytes => uint8) employeeMapping;
 
     event NFTMinted(
         address indexed to,
@@ -26,7 +29,11 @@ contract AlpacaToken is
         uint256 indexed alexToken
     );
 
-    constructor(string[] memory hashes, uint8[] memory tokenIds)
+    constructor(
+        string[] memory hashes,
+        uint8[] memory tokenIds,
+        address _forwarder
+    )
         ERC1155(
             "ipfs://QmZix4bQSQAJ2dC2QiNsJrSC7PmL1vEE4BozHrxhsvMPMP/{id}.json"
         )
@@ -34,17 +41,11 @@ contract AlpacaToken is
         name = "Alpaca NFT";
         symbol = "ALPA";
         _setRoyalties(msg.sender, ROYALTIES);
+        _setTrustedForwarder(_forwarder);
 
-        for (uint8 i=0; i<hashes.length; i++) {
+        for (uint8 i = 0; i < hashes.length; i++) {
             employeeMapping[bytes(hashes[i])] = tokenIds[i];
         }
-
-        // mint employee NFTs
-//        for (uint256 i = 1; i <= 22; i++) {
-//            _mint(msg.sender, i, 1, "");
-//        }
-//        // mint an Alex NFT
-//        _mint(msg.sender, 55, 1, "");
     }
 
     function mintNFT(string memory hash) public whenNotPaused {
@@ -71,6 +72,26 @@ contract AlpacaToken is
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    function _msgData()
+        internal
+        view
+        virtual
+        override(Context, BaseRelayRecipient)
+        returns (bytes calldata ret)
+    {
+        return super._msgData();
+    }
+
+    function _msgSender()
+        internal
+        view
+        virtual
+        override(Context, BaseRelayRecipient)
+        returns (address ret)
+    {
+        return super._msgSender();
     }
 
     function togglePause(bool newPaused) public onlyOwner {
