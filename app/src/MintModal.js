@@ -35,7 +35,7 @@ const MintModal = ({ show, handleClose, txState, txHash }) => {
                 wallet
               </p>
               <a
-                href={`https://rinkeby.etherscan.io/tx/${txHash}`}
+                href={`${process.env.REACT_APP_BLOCK_EXPLORER}/tx/${txHash}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -43,7 +43,7 @@ const MintModal = ({ show, handleClose, txState, txHash }) => {
               </a>
               <br />
               <a
-                href="https://testnets.opensea.io/account"
+                href={`${process.env.REACT_APP_OPEN_SEA}/account`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
