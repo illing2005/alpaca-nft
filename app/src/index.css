@@ -42,3 +42,10 @@ code {
 .cover-container {
   max-width: 42em;
 }
+
+.mintModal {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
