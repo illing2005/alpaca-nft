@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "truffle compile && yarn run-with-testrpc --chainId 1337 'truffle test'",
+    "ganache-with-gsn": "run-with-testrpc --chainId 1337 'gsn start'",
+    "kovantest": "truffle test --network rinkeby"
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,11 @@
   },
   "homepage": "https://github.com/truffle-box/drizzle-box#readme",
   "dependencies": {
-    "@opengsn/provider": "^2.2.6",
+    "@opengsn/cli": "^2.2.5",
+    "@opengsn/contracts": "^2.2.5",
+    "@opengsn/provider": "^2.2.5",
     "@openzeppelin/contracts": "^4.5.0",
+    "run-with-testrpc": "^0.3.1",
     "truffle-hdwallet-provider": "^1.0.17"
   }
 }

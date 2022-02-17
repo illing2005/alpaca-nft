@@ -13,7 +13,7 @@ contract AlpacaToken is
     ERC2981ContractWideRoyalties,
     BaseRelayRecipient
 {
-    string public override versionRecipient = "2.0.0";
+    string public override versionRecipient = "2.2.0";
     uint24 private constant ROYALTIES = 500;
 
     string public name;

@@ -26,10 +26,10 @@ contract Paymaster is BasePaymaster {
         bytes calldata approvalData,
         uint256 maxPossibleGas
     ) external virtual override returns (bytes memory context, bool) {
-        _verifyForwarder(relayRequest);
+        //_verifyForwarder(relayRequest);
         (signature, approvalData, maxPossibleGas);
 
-        require(relayRequest.request.to == ourTarget);
+        require(relayRequest.request.to == ourTarget, "target not whitelisted");
         emit PreRelayed(block.timestamp);
         return (abi.encode(block.timestamp), false);
     }
@@ -51,6 +51,6 @@ contract Paymaster is BasePaymaster {
         override
         returns (string memory)
     {
-        return "2.0.3";
+        return "2.2.0";
     }
 }

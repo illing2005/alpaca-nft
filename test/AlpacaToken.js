@@ -8,7 +8,7 @@ contract("AlpacaToken", (accounts) => {
     beforeEach(async function () {
       const { hashes, tokenIds } = require("../migrations/employee_hashes.json");
 
-      this.contract = await AlpacaToken.new(hashes, tokenIds, {
+      this.contract = await AlpacaToken.new(hashes, tokenIds, accounts[5], {
         from: account_one,
       });
     });
