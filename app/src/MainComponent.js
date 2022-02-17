@@ -7,25 +7,19 @@ import MintModal from "./MintModal";
 import Image from "react-bootstrap/cjs/Image";
 import Alert from "react-bootstrap/Alert";
 
-const MainComponent = ({ drizzleContext, metaMaskAvailable }) => {
-  const [currentStackId, setCurrentStackId] = useState(-1);
+const MainComponent = ({ metaMaskAvailable, context }) => {
+  const [txState, setTxState] = useState("pending");
   const [show, setShow] = useState(false);
   const [mintKey, setMintKey] = useState(null);
   const [assets, setAssets] = useState([]);
-  let txState;
   let txHash;
 
-  const { drizzle, drizzleState, initialized } = drizzleContext;
-  if (initialized && drizzleState.transactionStack[currentStackId]) {
-    txHash = drizzleState.transactionStack[currentStackId];
-    txState = drizzleState.transactions[txHash]?.status;
-  }
   useEffect(() => {
     const fetchOpenSea = async () => {
-      if (initialized) {
+      if (context.initialized) {
         const options = { method: "GET" };
-        const account = drizzleState.accounts[0];
-        const contract = drizzle?.contracts.AlpacaToken.address;
+        const account = context.account;
+        const contract = context.alpacaToken._address;
         const result = await fetch(
           `https://testnets-api.opensea.io/api/v1/assets?owner=${account}&asset_contract_address=${contract}&order_direction=desc&offset=0&limit=20`,
           options
@@ -34,17 +28,23 @@ const MainComponent = ({ drizzleContext, metaMaskAvailable }) => {
       }
     };
     fetchOpenSea();
-  }, [initialized]);
+  }, [context.initialized]);
 
   const mintNFT = async () => {
     setShow(true);
-    const { AlpacaToken } = drizzle?.contracts;
-    const gasPrice = await drizzle.web3.eth.getGasPrice();
-    const stackId = await AlpacaToken.methods.mintNFT.cacheSend(mintKey, {
-      gasLimit: "500000",
-      gasPrice,
-    });
-    setCurrentStackId(stackId);
+    setTxState("pending");
+    try {
+      const response = await context.alpacaToken.methods.mintNFT(mintKey).send({
+        from: context.account,
+        gasLimit: "500000",
+      });
+      console.log(response);
+      txHash = response.transactionHash;
+      setTxState("success");
+    } catch (e) {
+      console.log(e);
+      setTxState("error");
+    }
   };
 
   return (
@@ -71,7 +71,7 @@ const MainComponent = ({ drizzleContext, metaMaskAvailable }) => {
             onClick={mintNFT}
             disabled={!metaMaskAvailable}
           >
-            {initialized ? "Mint NFT" : "Loading..."}
+            {context.initialized ? "Mint NFT" : "Loading..."}
           </Button>
         </p>
         {!metaMaskAvailable && (

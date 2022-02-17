@@ -1,18 +1,50 @@
+import Web3 from "web3";
 import React, { useEffect, useState } from "react";
-import { DrizzleContext } from "@drizzle/react-plugin";
-import { Drizzle } from "@drizzle/store";
-import drizzleOptions from "./drizzleOptions";
+import Config from "./contracts/config.json";
 import MainComponent from "./MainComponent";
+import AlpacaToken from "./contracts/AlpacaToken.json";
+const { RelayProvider } = require("@opengsn/provider");
 
-const drizzle = new Drizzle(drizzleOptions);
+let context = {
+  web3: null,
+  alpacaToken: null,
+  account: null,
+  initialized: false,
+};
 
 const App = () => {
-
   const [metaMaskAvailable, setMetaMaskAvailable] = useState(true);
+  const [gsnInitialized, setGsnInitialized] = useState(false);
 
+  // Initialize GSN and contracts
   useEffect(() => {
-    // Switch to contract network
-    if (process.env.REACT_APP_ENVIRONMENT !== "production") {
+    const init = async () => {
+      const config = {
+        paymasterAddress: Config.paymaster,
+        chainId: process.env.REACT_APP_CHAIN_ID,
+        loggerConfiguration: {
+          logLevel: "error",
+        },
+      };
+      const provider = await RelayProvider.newProvider({
+        provider: window.web3.currentProvider,
+        config,
+      }).init();
+      context.web3 = new Web3(provider);
+      context.alpacaToken = new context.web3.eth.Contract(
+        AlpacaToken.abi,
+        Config.alpacaToken
+      );
+      context.account = (await context.web3.eth.getAccounts())[0];
+      context.initialized = true;
+      setGsnInitialized(true);
+    };
+    init();
+  }, []);
+
+  // Switch to contract network
+  useEffect(() => {
+    if (process.env.REACT_APP_ENVIRONMENT === "production") {
       if (window.ethereum) {
         const switchNetwork = async () => {
           window.ethereum.request({
@@ -33,21 +65,14 @@ const App = () => {
           });
         };
         switchNetwork();
-      } else{
+      } else {
         setMetaMaskAvailable(false);
       }
-
     }
   }, []);
 
   return (
-    <DrizzleContext.Provider drizzle={drizzle}>
-      <DrizzleContext.Consumer>
-        {(drizzleContext) => {
-          return <MainComponent drizzleContext={drizzleContext} metaMaskAvailable={metaMaskAvailable}/>;
-        }}
-      </DrizzleContext.Consumer>
-    </DrizzleContext.Provider>
+    <MainComponent metaMaskAvailable={metaMaskAvailable} context={context} />
   );
 };
 

@@ -12,7 +12,8 @@ const MintModal = ({ show, handleClose, txState, txHash }) => {
             <>
               <Spinner animation="border" style={{ color: "#ff6968" }} />
               <br />
-              Processing Transaction
+              Processing Transaction <br />
+              (This can take a few mins)
               <br />
               {txHash?.includes("0x") && (
                 <a
