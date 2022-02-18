@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/alpaca-token-website/static/css/main.5d0519e0.chunk.css",
+    "main.js": "/alpaca-token-website/static/js/main.48964e30.chunk.js",
+    "main.js.map": "/alpaca-token-website/static/js/main.48964e30.chunk.js.map",
+    "runtime-main.js": "/alpaca-token-website/static/js/runtime-main.6748c455.js",
+    "runtime-main.js.map": "/alpaca-token-website/static/js/runtime-main.6748c455.js.map",
+    "static/js/2.36aa0d9d.chunk.js": "/alpaca-token-website/static/js/2.36aa0d9d.chunk.js",
+    "static/js/2.36aa0d9d.chunk.js.map": "/alpaca-token-website/static/js/2.36aa0d9d.chunk.js.map",
+    "index.html": "/alpaca-token-website/index.html",
+    "precache-manifest.eb6d8477d7b479d37ddc76b480fa1741.js": "/alpaca-token-website/precache-manifest.eb6d8477d7b479d37ddc76b480fa1741.js",
+    "service-worker.js": "/alpaca-token-website/service-worker.js",
+    "static/css/main.5d0519e0.chunk.css.map": "/alpaca-token-website/static/css/main.5d0519e0.chunk.css.map",
+    "static/media/logo_alpaca.svg": "/alpaca-token-website/static/media/logo_alpaca.1ea0fed7.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6748c455.js",
+    "static/js/2.36aa0d9d.chunk.js",
+    "static/css/main.5d0519e0.chunk.css",
+    "static/js/main.48964e30.chunk.js"
+  ]
+}
