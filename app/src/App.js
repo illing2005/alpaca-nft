@@ -36,7 +36,7 @@ const App = () => {
             AlpacaToken.abi,
             Config.alpacaToken
         );
-        context.account = (await context.web3.eth.getAccounts())[0];
+        context.account = (await window.ethereum.request({ method: 'eth_requestAccounts' }))[0]
         context.initialized = true;
         setGsnInitialized(true);
       } catch (e) {
