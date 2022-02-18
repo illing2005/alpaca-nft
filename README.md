@@ -35,3 +35,5 @@ separate Paymaster contract takes care of paying the gas fees.
 [Read more about meta-transactions](https://docs.opengsn.org/#the-problem).
 
 Meta-transactions are implemented using the [GSNv2 standard](https://opengsn.org/).
+
+![Screenshot from 2022-02-18 15-31-44](https://user-images.githubusercontent.com/6603781/154702128-f369c5ba-95b1-4343-86b2-e0e102545d0e.png)
