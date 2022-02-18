@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const HDWalletProvider = require("truffle-hdwallet-provider");
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const infuraKey = fs.readFileSync(".infura").toString().trim();
 const mnemonic = fs.readFileSync(".secret").toString().trim();
 
@@ -26,9 +26,28 @@ module.exports = {
           mnemonic,
           `https://rinkeby.infura.io/v3/${infuraKey}`
         ),
+      skipDryRun: true,
       network_id: 4, // rinkeby's id
       gas: 4500000, // rinkeby has a lower block limit than mainnet
       gasPrice: 10000000000,
+    },
+    maticTestnet: {
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.infura.io/v3/${infuraKey}`),
+      network_id: 80001,
+      confirmations: 1,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+      gas: 4500000, // rinkeby has a lower block limit than mainnet
+      gasPrice: 10000000000,
+    },
+    matic: {
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mainnet.infura.io/v3/${infuraKey}`),
+      network_id: 137,
+      // confirmations: 1,
+      // timeoutBlocks: 200,
+      // skipDryRun: true,
+      // gas: 4500000, // rinkeby has a lower block limit than mainnet
+      gasPrice: 100000000000,
     },
   },
   // Configure your compilers
