@@ -6,7 +6,7 @@ const Footer = () => {
       <p>
         See on{" "}
         <a
-          href="https://getbootstrap.com/"
+          href="https://github.com/illing2005/alpaca-nft"
           target="_blank"
           rel="noopener noreferrer"
         >
