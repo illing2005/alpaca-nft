@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/alpaca-nft/static/css/main.5d0519e0.chunk.css",
-    "main.js": "/alpaca-nft/static/js/main.8d43b651.chunk.js",
-    "main.js.map": "/alpaca-nft/static/js/main.8d43b651.chunk.js.map",
+    "main.js": "/alpaca-nft/static/js/main.ce33dad7.chunk.js",
+    "main.js.map": "/alpaca-nft/static/js/main.ce33dad7.chunk.js.map",
     "runtime-main.js": "/alpaca-nft/static/js/runtime-main.740adbc0.js",
     "runtime-main.js.map": "/alpaca-nft/static/js/runtime-main.740adbc0.js.map",
     "static/js/2.adb384bd.chunk.js": "/alpaca-nft/static/js/2.adb384bd.chunk.js",
     "static/js/2.adb384bd.chunk.js.map": "/alpaca-nft/static/js/2.adb384bd.chunk.js.map",
     "index.html": "/alpaca-nft/index.html",
-    "precache-manifest.3db508218b09d1e3a283f010f72c6ef2.js": "/alpaca-nft/precache-manifest.3db508218b09d1e3a283f010f72c6ef2.js",
+    "precache-manifest.622fe4028ba04a5af285559098d351f8.js": "/alpaca-nft/precache-manifest.622fe4028ba04a5af285559098d351f8.js",
     "service-worker.js": "/alpaca-nft/service-worker.js",
     "static/css/main.5d0519e0.chunk.css.map": "/alpaca-nft/static/css/main.5d0519e0.chunk.css.map",
     "static/media/logo_alpaca.svg": "/alpaca-nft/static/media/logo_alpaca.1ea0fed7.svg"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.740adbc0.js",
     "static/js/2.adb384bd.chunk.js",
     "static/css/main.5d0519e0.chunk.css",
-    "static/js/main.8d43b651.chunk.js"
+    "static/js/main.ce33dad7.chunk.js"
   ]
 }

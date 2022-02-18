@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "04df016abefc3665469fdf3532940096",
+    "revision": "1c66bdf724417da5e2dbb5e935062776",
     "url": "/alpaca-nft/index.html"
   },
   {
-    "revision": "15c7b1c35f0505a5feaa",
+    "revision": "c52b40aae9ff632055ec",
     "url": "/alpaca-nft/static/css/main.5d0519e0.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/alpaca-nft/static/js/2.adb384bd.chunk.js"
   },
   {
-    "revision": "15c7b1c35f0505a5feaa",
-    "url": "/alpaca-nft/static/js/main.8d43b651.chunk.js"
+    "revision": "c52b40aae9ff632055ec",
+    "url": "/alpaca-nft/static/js/main.ce33dad7.chunk.js"
   },
   {
     "revision": "82cb689a6550afc4c85c",
