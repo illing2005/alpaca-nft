@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/alpaca-nft/precache-manifest.635705b26010aed628862a8d37ac8616.js"
+  "/alpaca-nft/precache-manifest.3db508218b09d1e3a283f010f72c6ef2.js"
 );
 
 self.addEventListener('message', (event) => {
