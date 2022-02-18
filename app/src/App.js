@@ -23,11 +23,11 @@ const App = () => {
         paymasterAddress: Config.paymaster,
         chainId: process.env.REACT_APP_CHAIN_ID,
         loggerConfiguration: {
-          logLevel: "error",
+          logLevel: "debug",
         },
       };
       const provider = await RelayProvider.newProvider({
-        provider: window.web3.currentProvider,
+        provider: window.web3?.currentProvider,
         config,
       }).init();
       context.web3 = new Web3(provider);
