@@ -16,9 +16,9 @@ module.exports = {
       network_id: "*",
     },
     development: {
-      host: '127.0.0.1',
+      host: "127.0.0.1",
       port: 8545,
-      network_id: '*' // Match any network id
+      network_id: "*", // Match any network id
     },
     rinkeby: {
       provider: () =>
@@ -32,7 +32,11 @@ module.exports = {
       gasPrice: 10000000000,
     },
     maticTestnet: {
-      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.infura.io/v3/${infuraKey}`),
+      provider: () =>
+        new HDWalletProvider(
+          mnemonic,
+          `https://polygon-mumbai.infura.io/v3/${infuraKey}`
+        ),
       network_id: 80001,
       confirmations: 1,
       timeoutBlocks: 200,
@@ -41,13 +45,19 @@ module.exports = {
       gasPrice: 10000000000,
     },
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mainnet.infura.io/v3/${infuraKey}`),
+      provider: () =>
+        new HDWalletProvider(
+          mnemonic,
+          "https://polygon-rpc.com/"
+          // `https://polygon-mainnet.infura.io/v3/${infuraKey}`
+        ),
       network_id: 137,
-      // confirmations: 1,
-      // timeoutBlocks: 200,
-      // skipDryRun: true,
-      // gas: 4500000, // rinkeby has a lower block limit than mainnet
-      gasPrice: 100000000000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true,
+      chainId: 137,
+      gas: 10000000, // You should change it based on your requirements
+      gasPrice: 1000000000000, // 100 gwei
     },
   },
   // Configure your compilers

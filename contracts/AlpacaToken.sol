@@ -35,7 +35,7 @@ contract AlpacaToken is
         address _forwarder
     )
         ERC1155(
-            "ipfs://QmZix4bQSQAJ2dC2QiNsJrSC7PmL1vEE4BozHrxhsvMPMP/{id}.json"
+            "ipfs://QmYYebDjTQr2JwwLc7XVCyadUuYH2yVkWsHm1EHBqCpkUK/{id}.json"
         )
     {
         name = "Alpaca NFT";
@@ -104,6 +104,6 @@ contract AlpacaToken is
 
     function contractURI() public pure returns (string memory) {
         return
-            "ipfs://QmZix4bQSQAJ2dC2QiNsJrSC7PmL1vEE4BozHrxhsvMPMP/contract_metadata.json";
+            "ipfs://QmYYebDjTQr2JwwLc7XVCyadUuYH2yVkWsHm1EHBqCpkUK/contract_metadata.json";
     }
 }

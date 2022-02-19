@@ -40,7 +40,7 @@ const MintModal = ({ show, handleClose, txState, txHash }) => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                View transaction on Etherscan
+                View transaction
               </a>
               <br />
               <a

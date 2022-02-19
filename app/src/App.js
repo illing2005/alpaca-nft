@@ -22,6 +22,10 @@ const App = () => {
       try {
         const config = {
           paymasterAddress: Config.paymaster,
+          relayLookupWindowBlocks: 1000,
+          relayRegistrationLookupBlocks: 2000,
+          pastEventsQueryMaxPageSize: 10000,
+          // gasPriceFactorPercent:50,
           chainId: process.env.REACT_APP_CHAIN_ID,
           loggerConfiguration: {
             logLevel: "debug",
